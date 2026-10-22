@@ -1,0 +1,84 @@
+.lobby-story{margin-top:8px;min-width:0}
+.lobby-story-carousel{border:1px solid #edf0f3;border-radius:16px;overflow:hidden;background:#f7f8fa}
+.lobby-story-carousel:focus-visible{outline:3px solid #3182f6;outline-offset:3px}
+.lobby-story-slide{display:grid;grid-template-rows:240px 250px;animation:lobby-story-enter .18s ease-out}
+.lobby-story-top{padding:16px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:10px;min-width:0;background:#f2f4f6}
+#levels .lobby-story .lobby-story-stage{margin:0;color:#6b7684;font-size:12px;font-weight:700;letter-spacing:.04em}
+#levels .lobby-story .lobby-story-headline{font-size:clamp(28px,2.7vw,38px);font-weight:800;line-height:1.2;padding-bottom:3px;letter-spacing:-.055em;color:#191f28;margin:0;overflow-wrap:anywhere;word-break:keep-all}
+#levels .lobby-story .lobby-story-headline.is-numeric{font-size:clamp(34px,3.8vw,52px);color:#3182f6;letter-spacing:-.06em}
+#levels .lobby-story .lobby-story-accent{margin:0;color:#2566bc;font-size:14px;font-weight:700;line-height:1.8;overflow-wrap:anywhere}
+#levels .lobby-story .lobby-story-note{margin:-10px 0 0;font-size:12px;color:#6b7684;line-height:1.7}
+.lobby-story-bottom{background:#191f28;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:8px;min-width:0}
+#levels .lobby-story .lobby-story-bottom p{margin:0;color:#f2f4f6;font-size:15px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.lobby-story-bottom strong{font-weight:750;color:#fff}
+.lobby-story-controls{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:8px 12px 0;background:#fff}
+.lobby-story-controls button{font:inherit;font-size:12px;font-weight:650;min-height:38px;padding:8px;border:0;border-radius:8px;color:#191f28;background:#f2f4f6;cursor:pointer}
+.lobby-story-controls button:last-child{color:#fff;background:#3182f6}
+.lobby-story-controls button:disabled{opacity:.35;cursor:default}
+.lobby-story-count{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;color:#6b7684;padding:0 6px}
+.lobby-story-indicators{display:flex;justify-content:center;background:#fff;padding:2px 8px 8px}
+.lobby-story-indicators button{display:grid;place-items:center;width:32px;height:28px;background:transparent;border:0;padding:0;cursor:pointer}
+.lobby-story-indicators span{display:block;width:7px;height:7px;border-radius:50%;background:#d1d6db}
+.lobby-story-indicators [aria-current] span{background:#3182f6;width:18px;border-radius:5px}
+.lobby-story button:focus-visible{outline:2px solid #3182f6;outline-offset:2px}
+#levels :is(.case-card-lobby,.case-card-story) .case-records{overflow:visible;scrollbar-gutter:auto}
+@media(min-width:1100px){
+  #levels .case-card:is(.case-card-lobby,.case-card-story){height:auto;min-height:0}
+}
+@media(min-width:601px) and (max-width:1099px){.lobby-story-carousel{max-width:620px;margin-inline:auto}}
+@media(max-width:600px){
+  .lobby-story-slide{grid-template-rows:240px 270px}
+  .lobby-story-top,.lobby-story-bottom{padding:16px}
+  .lobby-story-top{gap:10px}
+  #levels .lobby-story .lobby-story-headline{font-size:clamp(25px,6.5vw,32px)}
+  #levels .lobby-story .lobby-story-headline.is-numeric{font-size:clamp(32px,9vw,44px)}
+  #levels .lobby-story .lobby-story-accent{font-size:13px}
+  #levels .lobby-story .lobby-story-bottom p{font-size:14px;line-height:1.65}
+  .lobby-story-controls{padding-inline:10px;gap:4px}
+  .lobby-story-count{padding:0 3px;font-size:11px}
+  .lobby-story-indicators button{width:28px}
+}
+@keyframes lobby-story-enter{from{opacity:.65;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.lobby-story-slide{animation:none}}
+
+/* All three scenes share the same dimensions; viewport rules keep text readable. */
+
+
+
+
+.lobby-story-top>*{flex-shrink:0}
+@media(max-width:360px){.lobby-story-slide{grid-template-rows:250px 312px}}
+
+/* Five-slide studies share stable dimensions, including navigation. */
+.lobby-story-square .lobby-story-carousel{aspect-ratio:1;display:flex;flex-direction:column}
+.lobby-story-square .lobby-story-slide{flex:1;min-height:0;grid-template-rows:minmax(0,54fr) minmax(0,46fr)}
+.lobby-story-square .lobby-story-top,.lobby-story-square .lobby-story-bottom{padding:12px;gap:6px}
+#levels .lobby-story-square .lobby-story-headline{font-size:clamp(28px,2.5vw,36px)}
+#levels .lobby-story-square .lobby-story-bottom p{line-height:1.5}
+.lobby-story-square .lobby-story-controls{padding:4px 10px 0;flex-shrink:0}
+.lobby-story-square .lobby-story-indicators{padding:0 8px 4px;flex-shrink:0}
+/* Narrow cards need additional height to preserve readable, complete copy. */
+@media(max-width:600px){
+  .lobby-story-square .lobby-story-carousel{aspect-ratio:auto;height:450px}
+  .lobby-story-square .lobby-story-slide{grid-template-rows:155px minmax(0,1fr)}
+  #levels .lobby-story-square .lobby-story-headline{font-size:clamp(25px,6.5vw,32px)}
+}
+@media(max-width:360px){.lobby-story-square .lobby-story-carousel{height:470px}.lobby-story-square .lobby-story-slide{grid-template-rows:160px minmax(0,1fr)}}
+
+/* Lobby refinement: align the scene and story navigation as one layout. */
+.lobby-story-square .lobby-story-controls{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);padding-inline:0}
+@media(min-width:1100px){
+  .lobby-story-square{margin-top:0}
+  .lobby-story-square .lobby-story-carousel{aspect-ratio:auto;height:calc(min(1080px,100vw - 80px)*.320625 + 184.35875px)}
+  #levels .case-card-lobby .case-scene{display:flex;flex-direction:column;padding:24px}
+  #levels .case-card-lobby .case-scene>.project-media{flex-shrink:0;border-radius:16px;aspect-ratio:16/9}
+  #levels .case-card-lobby .case-body{flex:1;min-height:212px;padding:20px 0 0;display:flex;flex-direction:column}
+  #levels .case-card-lobby .case-body>p{margin-top:12px}
+  #levels .case-card-lobby .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:24px 0 0;flex:1;align-content:end}
+  #levels .case-card-lobby .flow li{display:flex;align-items:center;justify-content:space-between;min-height:32px;white-space:nowrap}
+  #levels .case-card-lobby .flow li:not(:last-child)::after{margin-left:4px}
+  #levels .case-card-lobby .case-records{display:flex;flex-direction:column}
+  #levels .case-card-lobby .lobby-story{flex:1;display:flex;margin-top:0}
+  #levels .case-card-lobby .lobby-story-carousel{flex:none;width:100%}
+}
+

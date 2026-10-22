@@ -1,0 +1,14 @@
+.play-project-info{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;width:100%;margin-top:32px;padding:32px 0;border-top:1px solid #e5e8eb;border-bottom:1px solid #e5e8eb}
+.play-project-info>div{min-width:0}
+.play-project-info h3{font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.1em;color:#6b7684;margin:0 0 22px}
+.play-project-info .project-detail-rows>div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:16px;padding:10px 0;border:0;font-size:14px;line-height:1.8}
+.play-project-info .project-detail-rows>div:first-child{padding-top:0}
+.play-project-info .project-detail-rows>div:last-child{padding-bottom:0}
+.play-project-info dt{color:#6b7684;font-weight:400}
+.play-project-info .project-detail-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:24px}
+.play-project-info .project-detail-links a{white-space:nowrap}
+.play-project-info dd{margin:0;color:#191f28;font-weight:550;overflow-wrap:anywhere}
+.play-project-info .play-project-overview p{font-size:15px;line-height:1.9;color:#191f28;margin:0;word-break:normal;overflow-wrap:anywhere}
+.play-project-info .play-project-overview p+p{margin-top:16px}
+@media(max-width:1000px){.play-project-info{gap:36px}}
+@media(max-width:760px){.play-project-info{grid-template-columns:minmax(0,1fr);gap:30px;padding:28px 0;margin-top:28px}.play-project-info h3{margin-bottom:18px}.play-project-info .project-detail-rows>div{grid-template-columns:72px minmax(0,1fr);gap:12px}.play-project-info .play-project-overview p{font-size:14px}}
