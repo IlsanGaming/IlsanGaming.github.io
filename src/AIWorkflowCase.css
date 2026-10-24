@@ -1,0 +1,13 @@
+.workflow-case{margin-top:32px;padding:28px;border:1px solid #e9edf1;border-radius:20px;background:#fff}
+.workflow-case-heading{max-width:780px}
+.workflow-case-heading .eyebrow{margin-bottom:12px;letter-spacing:.04em}
+.workflow-case-heading h3{font-size:22px;line-height:1.5;word-break:keep-all}
+.workflow-case-heading>p:last-child{margin-top:12px;font-size:15px;line-height:1.8;color:#6b7684;word-break:keep-all}
+.workflow-case-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:28px 0 0;padding:0;list-style:none}
+.workflow-case-steps li{min-width:0;padding-top:20px;border-top:2px solid #e8f0fe}
+.workflow-case-step{font-size:12px;font-weight:750;color:#3182f6}
+.workflow-case-steps h4{margin:12px 0 14px;font-size:17px;line-height:1.6;word-break:keep-all}
+.workflow-case-steps p{font-size:14px;line-height:1.85;color:#4e5968;word-break:keep-all;overflow-wrap:anywhere}
+.workflow-case-steps p+p{margin-top:12px}
+@media(max-width:900px){.workflow-case-steps{grid-template-columns:1fr;gap:24px}}
+@media(max-width:600px){.workflow-case{padding:20px;margin-top:24px}.workflow-case-heading h3{font-size:20px}.workflow-case-heading>p:last-child{font-size:14px}}

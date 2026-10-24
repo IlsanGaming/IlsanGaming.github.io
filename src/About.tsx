@@ -13,7 +13,7 @@ export default function About() {
       <div className="about-profile">
         <div className="about-profile-copy">
           <div className="about-profile-name"><h2>조강현</h2><span>Level Designer</span></div>
-          <p className="about-profile-description">“왜 여기인가?”라는 질문에 실제 플레이로 답하는 레벨디자이너 조강현입니다.</p>
+          <p className="about-profile-description">플레이로 완성되는 공간을 설계하는 레벨디자이너 조강현입니다.</p>
           <div className="about-profile-contacts">
             <span className="about-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" /><path d="M7 3v4m10-4v4M3 11h18m-13 5h2m4 0h2" /></svg><span>2002년생(만24세)</span></span>
             <a className="about-contact" href="tel:01098664636"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m5 3 4 1 1 5-3 2a15 15 0 0 0 6 6l2-3 5 1 1 4c-1 3-5 3-8 1C7 17 3 12 3 7c0-2 0-3 2-4Z" /></svg><span>010-9866-4636</span></a>
