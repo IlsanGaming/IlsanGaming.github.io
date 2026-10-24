@@ -30,7 +30,7 @@ function App() {
       <LevelStudies />
       <section id="iteration" className="section container"><h2>Al Workflow</h2><div className="comparison"><h3>초기 블록아웃과 현재 플레이 구현</h3><div className="compare-grid"><article><div className="compare-label">BEFORE <span>초기 블록아웃</span></div><LevelClip src="/videos/legacy-blockout.mp4" poster="/videos/legacy-blockout.webp" title="초기 블록아웃" scrollAutoplay /><p className="compare-description">플레이어가 접근하면 좀비가 생성되는 단순한 구조로 구현한 초기 화면입니다.</p></article><article><div className="compare-label blue">AFTER <span>— 실제 플레이 화면</span></div><LevelClip src="/videos/legacy-improved.mp4" poster="/videos/legacy-improved.webp" title="실제 플레이 화면" scrollAutoplay /><p className="compare-description">초기 블록아웃의 공간 구조를 개선하고, Unreal MCP를 활용해 플레이어의 행동이 다음 사건으로 이어지도록 게임 시스템을 구현했습니다.</p></article></div></div></section>
       <About />
-    </main><footer><div className="container footer-inner"><a className="brand" href="#home">WHY HERE<span>?</span></a><p>왜 이곳이어야 하는가? <span>Level Design Portfolio</span></p></div></footer>
+    </main><footer><div className="container footer-inner"><a className="brand header-brand" href="#home" aria-label="JOKANGHYEON LevelDesign 처음으로"><span>JOKANGHYEON</span><small>{Array.from('LevelDesign').map((letter, index) => <span key={index} aria-hidden="true">{letter}</span>)}</small></a><p>왜 이곳이어야 하는가? <span>Level Design Portfolio</span></p></div></footer>
   </>
 }
 export default App
