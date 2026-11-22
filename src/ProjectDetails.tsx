@@ -1,31 +1,34 @@
-import { assetUrl } from './assetUrl'
+import { operationDeltaExperience, projectLExperience } from './careerData'
 import './ProjectDetails.css'
 
-const details = [
-  ['장르', '3인칭 좀비 생존 호러'],
-  ['엔진', 'Unreal Engine 5.8'],
-  ['제작 기간', '2026.09.21 – 2026.10.19'],
-  ['제작 보조', 'Blender MCP · Unreal MCP'],
-]
-const overview = [
-  "Operation: Delta는 좀비 사태가 발생한 가상의 '서대문 병원'과 인근 시설을 배경으로 제작한 3인칭 생존 호러 레벨입니다.",
-  '플레이어가 직접 탈출 경로를 발견하고, 막힌 길을 우회하며, 정보를 수집하고 전투를 통해 탈출하도록 설계했습니다.',
-  '공간 배치와 시각적 단서, 연속된 사건을 통해 플레이어가 왜 그 길을 선택하는지 실제 플레이로 보여주는 프로젝트입니다.',
+const deltaDetails = [
+  [operationDeltaExperience.roleLabel, operationDeltaExperience.role.join(' · ')],
+  ['사용 엔진', operationDeltaExperience.engine],
+  ['설계 범위', '병원 로비부터 연구소 옥상까지의 공간 배치 · 탈출 동선 · 주요 이벤트 순서'],
 ]
 
-export default function ProjectDetails() {
+const projectLDetails = [
+  [projectLExperience.roleLabel, projectLExperience.role.join(' · ')],
+  ['사용 엔진', projectLExperience.engine],
+]
+
+export default function ProjectDetails({ overviewId, isProjectL }: { overviewId: string; isProjectL: boolean }) {
+  const details = isProjectL ? projectLDetails : deltaDetails
+
   return <div className="play-project-info">
-    <div className="play-project-details">
-      <h3>PROJECT DETAILS</h3>
-      <dl className="project-detail-rows">{details.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-      <div className="project-detail-links">
-        <a className="text-link" href={assetUrl("/documents/Operation_Delta_Level_Design_Portfolio.pdf")} target="_blank" rel="noopener noreferrer" aria-label="레벨 디자인 포트폴리오 PDF, 새 탭에서 열기">레벨 디자인 포트폴리오 PDF ↗</a>
-        <a className="text-link" href="https://youtu.be/iVRXsP2-A-A" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a>
-      </div>
-    </div>
     <div className="play-project-overview">
-      <h3>OVERVIEW</h3>
-      {overview.map(text => <p key={text}>{text}</p>)}
+      <h2 id={overviewId} tabIndex={-1}>OVERVIEW</h2>
+      {isProjectL
+        ? <p>{projectLExperience.description} 플레이어는 세 병사의 시점을 오가며 성벽을 점령하고 본성으로 진입합니다.</p>
+        : <p>좀비 사태가 발생한 서대문 병원에서 탈출 경로를 찾아가는 3인칭 생존 호러 레벨입니다. 플레이어의 행동이 다음 사건으로 이어지고, 막힌 길에서는 주변 단서를 통해 우회로를 찾도록 설계했습니다.</p>}
     </div>
+    <dl className="project-detail-rows" aria-label="프로젝트 정보" data-columns={details.length}>
+      {details.map(([label, value]) => (
+        <div key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 }

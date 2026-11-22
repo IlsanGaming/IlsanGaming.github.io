@@ -3,15 +3,15 @@ import type { StorySlide } from './CaseStory'
 
 const slides: StorySlide[] = [
   {
-    stage: '좁아지는 이동 경로', title: '플레이어를 계속 몰아붙입니다.',
-    accent: '벌어진 틈 · 가까워진 위협',
+    stage: '좁아지는 이동 경로', title: '위협과 탈출 경로를 동시에 보여줍니다.',
+    accent: '직진 차단 → 측면 차단 → 낮은 벽 발견',
     sentences: [
-      '구급차가 들이받아 벌어진 틈으로 좀비가 진입해 있습니다.',
-      '부상으로 도망칠수 없는 플레이어는 마지막 선택만이 남았습니다.',
+      '먼저 마주치는 좀비가 직진을 막고, 방향을 틀면 두 번째 좀비가 회피 경로를 막습니다. 파손된 바리케이드 틈으로도 좀비가 들어와 움직일 공간이 좁아집니다.',
     ],
+    guidance: '코너를 돌 때 정면의 좀비와 측면의 낮은 벽이 같은 시야에 들어오도록 배치해, 당장 넘을 수 있는 경로를 발견하도록 했습니다.',
   },
 ]
 
 export default function QuarantineStory() {
-  return <CaseStory slides={slides} title="격리구역" variant="lobby-story-square lobby-story-quarantine" showStepLabel={false} />
+  return <CaseStory slides={slides} title="격리구역" showStepLabel={false} />
 }

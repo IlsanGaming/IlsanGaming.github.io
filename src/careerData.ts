@@ -1,10 +1,10 @@
-import { projectInfo } from './projectData'
+import { projectInfo, projectL } from './projectData'
+import type { ProjectImage } from './projectData'
 
 export type Education = {
   id: string
   institution: string
   major: string
-  admission: string
   status?: string
   period: { start: string; end?: string } | null
   degree: string | null
@@ -14,53 +14,95 @@ export type CareerEntry = {
   id: string
   title: string
   category: string
-  period: { start: string; end: string; duration?: string } | null
   teamSize: number | null
   role: string[] | null
+  roleLabel?: string
+  engine?: string
+  features?: string
+  covers?: ProjectImage[]
   description: string
-  summaryInfo?: string
   contributions: string[]
   collaborators?: string[]
   result: string | null
   externalUrl?: string
-  internalUrl?: string
   connection?: string
   visibility: boolean
 }
 export const education: Education[] = [
-  { id: 'sangmyung-game', institution: '상명대학교', major: '게임전공', admission: '편입학', status: '졸업 예정', period: { start: '2024-03', end: '2027-02' }, degree: null, visibility: true },
+  { id: 'sangmyung-game', institution: '상명대학교', major: '게임전공', status: '졸업 예정', period: { start: '2024-03', end: '2027-02' }, degree: null, visibility: true },
 ]
 export const skills = [
-  { id: 'engine', category: '엔진 · 게임 구현', items: ['Unreal Engine 5.8', 'Blueprint'] },
-  { id: 'ai', category: 'AI 작업 도구', items: ['ChatGPT', 'Codex'] },
-  { id: 'integration', category: '제작 연동 환경', items: ['Blender MCP', 'Unreal MCP'] },
+  {
+    id: 'powerpoint', tool: 'PowerPoint',
+    description: '레벨 기획 의도와 평면도 도식화',
+  },
+  {
+    id: 'paint-net', tool: 'Paint.NET',
+    description: '평면도 제작과 플레이 동선·요소 배치',
+  },
+  {
+    id: 'engine', tool: 'Unreal Engine 5.8',
+    description: '블록아웃, MCP 기반 플레이 구현, Landscape·PCG 환경 제작',
+    details: [
+      '평면도를 바탕으로 기획 의도에 맞는 동선과 블록아웃을 제작합니다.',
+      '일관된 규격을 적용해 레벨을 구성하고, MCP를 연동해 기획 아이디어를 게임플레이로 구현합니다.',
+      'Landscape로 테마에 맞는 지형과 플레이 동선을 만들고, PCG로 테마에 맞는 환경을 구성합니다.',
+    ],
+  },
+  {
+    id: 'clipchamp', tool: 'Clipchamp',
+    description: '레벨 플레이 영상 편집·팀 공유',
+  },
+  {
+    id: 'collaboration', tool: '협업',
+    description: 'Discord·Microsoft Teams로 소통, Notion에 기획·피드백 정리',
+  },
 ]
 // 수상 내역이 확인되면 추가합니다. 빈 Awards 카드는 표시하지 않습니다.
 export const awards: { id: string; title: string; description?: string; visibility: boolean }[] = []
+export const operationDeltaExperience = {
+  id: 'zombie-survival', title: 'Operation:Delta', category: '개인 프로젝트',
+  teamSize: projectInfo.teamSize, roleLabel: '제작 형태', role: ['레벨 기획', '블록아웃', '시네마틱 연출(1인 개발)'],
+  engine: 'Unreal Engine 5', features: '플레이어 행동이 다음 사건과 우회 동선으로 이어지는 설계',
+  description: 'Operation 후속 개인 프로젝트 · 3인칭 도심 탈출 레벨',
+  covers: [projectInfo.cover],
+  contributions: projectInfo.contributions.map(item => item.description),
+  result: null, visibility: true,
+} satisfies CareerEntry
+
+export const projectLExperience = {
+  id: projectL.entryId, title: projectL.title, category: '레벨 디자인', covers: [projectL.cover],
+  teamSize: 1, roleLabel: '제작 형태', role: ['레벨 기획', '블록아웃', '시네마틱 연출(1인 개발)'],
+  description: projectL.description, engine: 'Unreal Engine 5',
+  features: '세 병사의 시점을 오가며 성벽 점령부터 본성 진입까지 진행',
+  contributions: [], result: null, visibility: true,
+} satisfies CareerEntry
+
 export const experiences: CareerEntry[] = [
+  projectLExperience,
+  operationDeltaExperience,
   {
-    id: 'zombie-survival', title: projectInfo.title, category: '개인 프로젝트',
-    period: { start: projectInfo.period.start, end: projectInfo.period.end, duration: `${projectInfo.period.weeks}주` },
-    teamSize: projectInfo.teamSize, role: ['레벨 디자인', '기획'],
-    description: '좀비 서바이벌 호러 레벨 디자인 · 취업용 개인 포트폴리오',
-    contributions: projectInfo.contributions.map(item => item.description),
-    result: null, internalUrl: '#levels', visibility: true,
-  },
-  {
-    id: 'operation', title: 'operation', category: '캡스톤디자인', period: null, teamSize: 4,
-    role: ['팀장', '레벨 디자인'], description: '1인칭 멀티플레이 좀비 슈터',
+    id: 'operation', title: 'operation', category: '캡스톤디자인', teamSize: 4,
+    role: ['팀장, 기획(전반)'], description: '1인칭 멀티플레이 좀비 슈터',
+    engine: 'Unreal Engine 5', features: '4인 팀 졸업 캡스톤 · 봉쇄 구역 협동 임무',
+    covers: [{ src: '/images/operation-steam-screenshot.jpg', alt: 'operation Steam 스크린샷, 긴 복도에서 좀비와 마주치는 1인칭 플레이 장면' }],
     contributions: ['레벨 디자인(블록아웃), 블루프린트 구현', '메타휴먼 제작, 배경 디자인', '시나리오, UI'],
     collaborators: ['팀원 2명: 시네마틱 제작', '팀원 1명: 멀티플레이 환경 구현'],
     connection: '이전 팀 캡스톤에서 경험한 레벨 디자인 문제는 이후 개인 프로젝트 Operation: Delta의 개선 동기가 되었습니다.',
     result: null, externalUrl: 'https://store.steampowered.com/app/4868590/operation/', visibility: true,
   },
   {
-    id: 'lastguardians', title: 'LastGuardians', category: '게임소프트웨어개발 Ⅰ', period: null, teamSize: null, role: null,
-    description: 'Unity 기반 모바일 종스크롤 슈팅', summaryInfo: 'Google Play 등록 경험', contributions: ['모바일 게임 제작 프로젝트'],
+    id: 'lastguardians', title: 'LastGuardians', category: '게임소프트웨어개발 Ⅰ', teamSize: null, role: ['게임 기획'],
+    engine: 'Unity', features: 'Google Play 정식 출시 · 현재 서비스 종료',
+    description: 'Unity 기반 모바일 종스크롤 슈팅', contributions: ['모바일 게임 제작 프로젝트'],
+    covers: [
+      { src: '/images/lastguardians-boss-forward.jpg', alt: 'LastGuardians 보스전의 전방 발사 탄막 패턴' },
+      { src: '/images/lastguardians-boss-circle.jpg', alt: 'LastGuardians 보스전의 원형 탄막 패턴' },
+    ],
     result: '현재 개발자 계정 해지로 운영하지 않습니다.', visibility: true,
   },
   {
-    id: 'jamsurvivor', title: 'JamSurvivor', category: '게임잼', period: null, teamSize: null, role: null,
+    id: 'jamsurvivor', title: 'JamSurvivor', category: '게임잼', teamSize: null, role: null,
     description: '게임잼 참가작 · 모바일 게임 제작', contributions: [], result: null, visibility: false,
   },
 ]

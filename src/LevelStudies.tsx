@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useState } from 'react'
+import { assetUrl } from './assetUrl'
 import { cases } from './projectData'
 import type { LevelStudy, ProjectImage } from './projectData'
 import LevelClip from './LevelClip'
@@ -9,6 +10,17 @@ import LaboratoryStory from './LaboratoryStory'
 import HQStory from './HQStory'
 import './LevelStudies.css'
 
+const caseStories = {
+  'lobby-sheet': LobbyStory,
+  'skybridge-story': SkybridgeStory,
+  'quarantine-story': QuarantineStory,
+  'laboratory-story': LaboratoryStory,
+  'hq-story': HQStory,
+}
+
+const routeStops = ['병실·병원 로비', '직원 통로', '최상층', '병원 앞·출구', '격리구역', 'HQ(지휘소)', '연구소 1층·옥상']
+const routeMapSrc = '/images/operation-delta-level-map.webp'
+
 function Placeholder({ text }: { text: string }) {
   return <div className="placeholder"><span className="image-symbol" aria-hidden="true">▧</span><span>{text}</span><small>이미지 준비 중</small></div>
 }
@@ -18,47 +30,45 @@ function ProjectMedia({ image, text }: { image?: ProjectImage; text: string }) {
 }
 
 function renderCase(item: LevelStudy) {
-  return <article className={`case-card${item.detailLayout === "lobby-sheet" ? " case-card-lobby" : ""}${(item.detailLayout === "skybridge-story" || item.detailLayout === "quarantine-story" || item.detailLayout === "laboratory-story" || item.detailLayout === "hq-story") ? " case-card-story" : ""}${item.wide ? " case-card-wide" : ""}`} key={item.label}><div className="case-scene">{item.video ? <LevelClip src={item.video} poster={item.poster} title={item.title} scrollAutoplay /> : <ProjectMedia image={item.image} text={`${item.title} 스크린샷 영역`} />}<div className="case-body"><div className="case-title"><h3>{item.title}</h3><span>{item.label}</span></div><p>{item.focus}</p><ol className="flow">{item.steps.map(step => <li key={step}>{step}</li>)}</ol></div></div><div className="case-records" role="region" aria-label={`${item.title} 사례 기록`} tabIndex={0}>{item.detailLayout === "lobby-sheet" ? <LobbyStory /> : item.detailLayout === "skybridge-story" ? <SkybridgeStory /> : item.detailLayout === "quarantine-story" ? <QuarantineStory /> : item.detailLayout === "laboratory-story" ? <LaboratoryStory /> : item.detailLayout === "hq-story" ? <HQStory /> : null}</div></article>
+  const Story = item.detailLayout && caseStories[item.detailLayout]
+
+  return <article className="case-card" key={item.label}>
+    <header className="level-case-header">
+      <h3><span>{item.label}</span> {item.title}</h3>
+      <p>{item.focus}</p>
+    </header>
+    <div className="level-case-content">
+      {item.video
+        ? <LevelClip src={item.video} poster={item.poster} title={item.title} scrollAutoplay />
+        : <ProjectMedia image={item.image} text={`${item.title} 스크린샷 영역`} />}
+      <div className="case-records" role="region" aria-label={`${item.title} 사례 기록`} tabIndex={0}>
+        {Story && <Story />}
+      </div>
+    </div>
+  </article>
 }
 
 export default function LevelStudies() {
-  const [expanded, setExpanded] = useState(false)
-  const moreButton = useRef<HTMLButtonElement>(null)
-  const additional = useRef<HTMLDivElement>(null)
-  const pending = useRef<{ action: 'expand' | 'collapse'; scrollTop: number } | null>(null)
-
-  useLayoutEffect(() => {
-    const change = pending.current
-    if (!change) return
-    pending.current = null
-    if (change.action === 'expand') {
-      window.scrollTo({ top: change.scrollTop, behavior: 'instant' })
-      additional.current?.querySelector<HTMLElement>('.case-records')?.focus({ preventScroll: true })
-    } else {
-      moreButton.current?.focus({ preventScroll: true })
-      moreButton.current?.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
-  }, [expanded])
-
-  const toggle = (next: boolean) => {
-    pending.current = { action: next ? 'expand' : 'collapse', scrollTop: window.scrollY }
-    setExpanded(next)
-  }
+  const mapUrl = assetUrl(routeMapSrc)
 
   return <section id="levels" className="section soft"><div className="container">
-    <p className="eyebrow">Scenes That Shape Player Choices</p><h2>Level Design Details</h2>
-    <div className="case-grid">
-      {cases.slice(0, 1).map(renderCase)}
-      <div id="additional-level-cases" ref={additional} className="additional-level-cases" hidden={!expanded}>
-        {expanded && cases.slice(1).map(renderCase)}
+    <h2 className="level-studies-heading">Level Design Details</h2>
+    <div className="level-studies-workspace">
+      <div className="level-route">
+        <h3>전체 이동 동선도</h3>
+        <figure>
+          <a className="level-route-preview" href={mapUrl} target="_blank" rel="noopener noreferrer" aria-label="전체 이동 동선도 크게 보기, 새 탭에서 열기">
+            <img src={mapUrl} alt="병원 로비에서 연구소 옥상까지 이동하는 방향을 화살표와 1~7번으로 표시한 평면도" width={1135} height={684} loading="lazy" />
+            <span aria-hidden="true">동선도 크게 보기 ↗</span>
+          </a>
+          <figcaption>
+            <ol>{routeStops.map(stop => <li key={stop}>{stop}</li>)}</ol>
+          </figcaption>
+        </figure>
       </div>
-      {expanded ? <div className="case-collapse"><button type="button" className="button secondary" aria-expanded={true} aria-controls="additional-level-cases" onClick={() => toggle(false)}>접기 ↑</button></div>
-        : <div className="case-preview">
-          <div className="case-preview-content" aria-hidden="true">
-            <span>{cases[1].label}</span><h3>{cases[1].title}</h3><p>{cases[1].focus}</p>
-          </div>
-          <button ref={moreButton} type="button" className="button primary" aria-expanded={false} aria-controls="additional-level-cases" onClick={() => toggle(true)}>+더보기</button>
-        </div>}
+      <div className="level-studies-cases">
+        {cases.map(renderCase)}
+      </div>
     </div>
   </div></section>
 }

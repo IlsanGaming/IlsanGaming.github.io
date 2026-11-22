@@ -4,15 +4,15 @@ import './LobbyStory.css'
 
 export type StorySlide = {
   stage: string; title: string; accent: string; sentences: ReactNode[]
-  numeric?: boolean; note?: string; conclusion?: string
+  numeric?: boolean; guidance?: string; adjustment?: string
 }
-export default function CaseStory({ slides, title, variant = "", showStepLabel = true }: { slides: StorySlide[]; title: string; variant?: string; showStepLabel?: boolean }) {
+export default function CaseStory({ slides, title, showStepLabel = true }: { slides: StorySlide[]; title: string; showStepLabel?: boolean }) {
   const [index, setIndex] = useState(0)
   const id = useId()
   const slide = slides[index]
   const number = String(index + 1).padStart(2, '0')
   const total = String(slides.length).padStart(2, '0')
-  return <div className={`lobby-story ${variant}`}>
+  return <div className="lobby-story">
     <div className="lobby-story-carousel" role="region" aria-roledescription={slides.length > 1 ? '카드뉴스' : undefined} aria-label={`${title} 기획 요약`} tabIndex={slides.length > 1 ? 0 : undefined}
       onKeyDown={event => {
         if (slides.length <= 1) return
@@ -30,9 +30,12 @@ export default function CaseStory({ slides, title, variant = "", showStepLabel =
           {showStepLabel && <p className="lobby-story-stage">{number} — {slide.stage}</p>}
           <h4 className={slide.numeric ? 'lobby-story-headline is-numeric' : 'lobby-story-headline'}>{slide.title}</h4>
           <p className="lobby-story-accent">{slide.accent}</p>
-          {slide.note && <p className="lobby-story-note">{slide.note}</p>}
         </div>
-        <div className="lobby-story-bottom">{slide.sentences.map((sentence, i) => <p key={i}>{sentence}</p>)}{slide.conclusion && <p><strong>{slide.conclusion}</strong></p>}</div>
+        <div className="lobby-story-bottom">
+          {slide.sentences.map((sentence, i) => <p key={i}>{sentence}</p>)}
+          {slide.guidance && <p className="lobby-story-guidance"><strong>유도 장치</strong> {slide.guidance}</p>}
+          {slide.adjustment && <p className="lobby-story-adjustment"><strong>테스트 후 조정</strong> {slide.adjustment}</p>}
+        </div>
       </div>
       {slides.length > 1 && <><div className="lobby-story-controls">
         <button type="button" aria-label="이전 카드" aria-controls={id} disabled={index === 0} onClick={() => setIndex(index - 1)}>← 이전</button>
