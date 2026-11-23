@@ -5,13 +5,13 @@ import './ProjectPicker.css'
 const projects = [
   {
     title: projectL.title,
-    description: projectL.description,
+    description: '세 병사의 시점을 오가며 성벽을 넘고 성문을 여는 3인칭 공성전.',
     cover: assetUrl(projectL.cover.src),
     href: `#${projectL.entryId}`,
   },
   {
     title: projectInfo.title,
-    description: '플레이어의 행동이 다음 사건으로 이어지는 좀비 서바이벌 레벨 디자인.',
+    description: '좀비로 출구가 막힌 병원에서 단서를 따라 탈출로를 찾는 3인칭 생존 호러.',
     cover: assetUrl(projectInfo.cover.src),
     href: '#play',
   },
