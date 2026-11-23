@@ -6,6 +6,8 @@ export const projectL = {
   cover: { src: '/images/project-l-cover.png', alt: 'Project L 성벽 돌파 표지와 공성전 레벨의 성벽 전경' },
   description: '로스트아크 ‘영광의 벽’에서 영감을 받은 3인칭 공성전 레벨입니다.',
   heroVideo: { src: '/videos/project-l-highlight.mp4', poster: '/videos/project-l-highlight.webp' },
+  videoUrl: 'https://youtu.be/WX_gl6qEkw0',
+  document: '/documents/project-l-design.pdf',
 }
 
 export type LevelStudy = {

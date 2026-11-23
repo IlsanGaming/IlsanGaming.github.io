@@ -21,6 +21,31 @@ export default function About() {
         </div>
       </div>
       <div className="career-layout">
+        <section className="career-experience" aria-labelledby="experience-title">
+          <div className="career-experience-heading"><p className="career-kicker">프로젝트 및 활동</p><h3 id="experience-title">Experience</h3></div>
+          <ol className="career-timeline">
+            {experiences.filter(item => item.visibility).map(item => (
+              <li key={item.id} className="career-timeline-item">
+                <article className="career-work career-summary" aria-labelledby={`work-${item.id}`}>
+                  <div className="career-summary-copy">
+                    <div className="career-work-meta"><span className="career-category">{item.category}</span></div>
+                    <h4 id={`work-${item.id}`}>{item.title}</h4>
+                    {item.role?.length ? <p className="career-summary-role">{item.role.join(' · ')}</p> : null}
+                    <p className="career-work-description">{item.features ?? item.description}</p>
+                    {item.externalUrl && <a className="text-link career-summary-steam" href={item.externalUrl} target="_blank" rel="noopener noreferrer">
+                      Steam에서 보기 <span aria-hidden="true">↗</span>
+                    </a>}
+                  </div>
+                  {!!item.covers?.length && <div className="career-summary-media">
+                    <div className="career-summary-images">
+                      {item.covers.map(cover => <img className="career-summary-cover" key={cover.src} src={assetUrl(cover.src)} alt={cover.alt} loading="lazy" />)}
+                    </div>
+                  </div>}
+                </article>
+              </li>
+            ))}
+          </ol>
+        </section>
         <div className="career-sidebar">
           <section className="career-info-card" aria-labelledby="education-title"><p className="career-kicker">학력</p><h3 id="education-title">Education</h3>{education.filter(item => item.visibility).map(item => <div className="education-entry" key={item.id}><h4>{item.institution}</h4><p>{item.major}</p>{item.status && <p className="education-status"><span className="career-tag">{item.status}</span></p>}{item.period && <p className="career-period">{formatDate(item.period.start)}{item.period.end && ` – ${formatDate(item.period.end)}`}</p>}{item.degree && <p>{item.degree}</p>}</div>)}</section>
           <section className="career-info-card" aria-labelledby="skills-title">
@@ -28,42 +53,16 @@ export default function About() {
             {skills.map(skill => (
               <div className="skill-group" key={skill.id}>
                 <h4>{skill.tool}</h4>
-                <p>{skill.description}</p>
+                {skill.description && <p>{skill.description}</p>}
                 {skill.details && <ul className="skill-details">
                   {skill.details.map(detail => <li key={detail}>{detail}</li>)}
                 </ul>}
               </div>
             ))}
           </section>
-          <section className="career-info-card" aria-labelledby="military-title">
-            <p className="career-kicker">병역 사항</p><h3 id="military-title">Military Service</h3>
-            <div className="military-entry"><h4>수도기계화보병사단 병장 만기전역</h4><p className="career-period"><time dateTime="2021-07">2021.07</time> – <time dateTime="2023-01">2023.01</time></p></div>
-            <div className="military-entry"><h4>예비역 하사 임용</h4><p className="career-period"><time dateTime="2025-09">2025.09</time></p></div>
-          </section>
           {visibleAwards.length > 0 && <section className="career-info-card" aria-labelledby="awards-title"><p className="career-kicker">수상</p><h3 id="awards-title">Awards</h3>{visibleAwards.map(item => <div key={item.id}><h4>{item.title}</h4>{item.description && <p>{item.description}</p>}</div>)}</section>}
         </div>
-        <section className="career-experience" aria-labelledby="experience-title"><div className="career-experience-heading"><p className="career-kicker">프로젝트 및 활동</p><h3 id="experience-title">Experience</h3></div>
-          <ol className="career-timeline">{experiences.filter(item => item.visibility).map(item => <li key={item.id} className="career-timeline-item"><article className="career-work career-summary" aria-labelledby={`work-${item.id}`}>
-          <div className="career-summary-copy">
-            <div className="career-work-meta"><span className="career-category">{item.category}</span></div>
-            <h4 id={`work-${item.id}`}>{item.title}</h4><p className="career-work-description">{item.description}</p>
-            <dl className="career-project-fields">
-              <div><dt>{item.roleLabel ?? '담당파트'}</dt><dd>{item.role?.join(' · ') ?? '준비 중'}</dd></div>
-              <div><dt>사용 엔진</dt><dd>{item.engine ?? '준비 중'}</dd></div>
-              <div><dt>특징</dt><dd>{item.features ?? '준비 중'}</dd></div>
-            </dl>
-          </div>
-            {(item.covers?.length || item.externalUrl) && <div className="career-summary-media">
-              {item.externalUrl && <a className="text-link" href={item.externalUrl} target="_blank" rel="noopener noreferrer">
-                Steam에서 보기 <span aria-hidden="true">↗</span>
-              </a>}
-              {!!item.covers?.length && <div className="career-summary-images">
-                {item.covers.map(cover => <img className="career-summary-cover" key={cover.src} src={assetUrl(cover.src)} alt={cover.alt} loading="lazy" />)}
-              </div>}
-            </div>}
-            </article></li>)}</ol>
-        </section>
-      </div><a className="text-link career-back" href="#home">처음으로 돌아가기 ↑</a>
+      </div>
     </div>
   </section>
 }

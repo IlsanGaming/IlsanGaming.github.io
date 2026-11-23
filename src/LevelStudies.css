@@ -1,4 +1,4 @@
-#levels {
+:is(#levels, #project-l-details) {
   --level-card-padding: clamp(18px, 2.5vw, 36px);
   --level-card-gap: clamp(20px, 2.5vw, 36px);
   font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
@@ -22,7 +22,7 @@
 }
 
 .level-route,
-#levels .case-card {
+:is(#levels, #project-l-details) .case-card {
   min-width: 0;
   padding: var(--level-card-padding);
   background: #fff;
@@ -46,11 +46,7 @@
 }
 
 .level-route-preview {
-  display: grid;
-  gap: 8px;
-  color: #1763c6;
-  font-size: 14px;
-  font-weight: 650;
+  display: block;
   border-radius: 16px;
 }
 
@@ -61,19 +57,21 @@
   border-radius: 16px;
 }
 
-.level-route-preview span {
+.level-route-expand {
+  color: #1763c6;
+  font-size: 14px;
+  font-weight: 650;
   justify-self: start;
   padding: 7px 12px;
   background: #e8f1ff;
   border-radius: 8px;
 }
 
-.level-route-preview:hover span { background: #dceaff; }
+.level-route-expand:hover { background: #dceaff; }
 
 .level-route figcaption {
-  padding: clamp(14px, 2.5vw, 28px);
-  background: #f2f4f6;
-  border-radius: 16px;
+  display: grid;
+  gap: 12px;
 }
 
 .level-route ol {
@@ -81,7 +79,10 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px 20px;
   margin: 0;
-  padding-inline-start: 22px;
+  padding: clamp(14px, 2.5vw, 28px);
+  padding-inline-start: calc(clamp(14px, 2.5vw, 28px) + 22px);
+  background: #f2f4f6;
+  border-radius: 16px;
   color: #4e5968;
   font-size: clamp(13px, 1.2vw, 16px);
   line-height: 1.45;
@@ -119,6 +120,15 @@
 .level-case-content > .project-media { border-radius: 16px; }
 .case-records { min-width: 0; border-radius: 16px; }
 .case-records:focus-visible { outline: 2px solid #3182f6; outline-offset: 4px; }
+
+.play-project-overview h3 {
+  margin-top: 14px;
+  font-size: clamp(20px, 2.1vw, 30px);
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.project-detail-overview-section + #project-l-details { padding-top: 0; }
 
 @media (min-width: 900px) {
   .level-route figure,

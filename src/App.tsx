@@ -7,13 +7,14 @@ import ProjectDetails from './ProjectDetails'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { projectInfo, projectL } from './projectData'
 import LevelStudies from './LevelStudies'
+import ProjectLStudies from './ProjectLStudies'
 import ProjectPicker from './ProjectPicker'
 
 const homeNav = [['home', 'Home'], ['projects', 'Project'], ['about', 'About me']]
 type DetailRoute = { entryId: string; overviewId: string; contactId: string; detailsId?: string }
 
 const deltaRoute: DetailRoute = { entryId: 'play', overviewId: 'overview', detailsId: 'levels', contactId: 'project-contact' }
-const projectLRoute: DetailRoute = { entryId: projectL.entryId, overviewId: 'project-l-overview', contactId: 'project-l-contact' }
+const projectLRoute = { entryId: projectL.entryId, overviewId: 'project-l-overview', detailsId: 'project-l-details', contactId: 'project-l-contact' } satisfies DetailRoute
 
 function getPageFragment() {
   const fragment = window.location.hash.slice(1)
@@ -25,9 +26,10 @@ type SectionNavigation = {
   selectSection: (id: string) => void
 }
 
-function SiteHeader({ activeSection, selectSection, contactId, scrolled }: SectionNavigation & {
+function SiteHeader({ activeSection, selectSection, contactId, scrolled, alignWithContent }: SectionNavigation & {
   contactId: string
   scrolled: boolean
+  alignWithContent: boolean
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menu = useRef<HTMLDivElement>(null)
@@ -60,7 +62,7 @@ function SiteHeader({ activeSection, selectSection, contactId, scrolled }: Secti
 
   return (
     <header className="header" data-scrolled={scrolled}>
-      <div className="nav-wrap">
+      <div className={alignWithContent ? 'nav-wrap container' : 'nav-wrap'}>
         <a className="header-brand" href="#home" aria-label="JOKANGHYEON LevelDesign 처음으로" onClick={() => setMenuOpen(false)}>
           <img src={assetUrl('/jokanghyeon.svg')} width={64} height={64} alt="" />
         </a>
@@ -117,13 +119,18 @@ function ProjectDetailPage({ route, activeSection }: Pick<SectionNavigation, 'ac
     <div className="project-detail-hero" style={{ backgroundImage: `url("${assetUrl(poster)}")` }}>
       <LevelClip src={src} poster={poster} title={project.title} background />
       <div className="project-detail-hero-title">
-        <p>{isProjectL ? '3인칭 공성전 · 성벽 돌파' : '3인칭 좀비 서바이벌 · 도심 탈출'}</p>
+        <p>{isProjectL ? '세 병사의 시점을 이어 성벽을 넘고 성문을 여는 3인칭 공성전' : '3인칭 좀비 서바이벌 · 도심 탈출'}</p>
         <h1>{project.title}</h1>
         <div className="project-detail-hero-actions">
           {isProjectL
-            ? <a className="button primary" href={assetUrl(src)} target="_blank" rel="noopener noreferrer" aria-label="영상 보기, Project L 하이라이트를 새 탭에서 열기">
-                <span aria-hidden="true">▶</span> 영상 보기
-              </a>
+            ? <>
+                <a className="button primary" href={projectL.videoUrl} target="_blank" rel="noopener noreferrer" aria-label="YouTube에서 Project L 영상 보기, 새 탭에서 열기">
+                  <span aria-hidden="true">▶</span> YouTube
+                </a>
+                <a className="button secondary" href={assetUrl(projectL.document)} target="_blank" rel="noopener noreferrer" aria-label="Document, Project L 기획서 PDF를 새 탭에서 열기">
+                  Document <span aria-hidden="true">↗</span>
+                </a>
+              </>
             : <>
                 <a className="button primary" href="https://youtu.be/iVRXsP2-A-A" target="_blank" rel="noopener noreferrer" aria-label="YouTube에서 Operation: Delta 영상 보기, 새 탭에서 열기">
                   <span aria-hidden="true">▶</span> YouTube
@@ -149,7 +156,7 @@ function ProjectDetailPage({ route, activeSection }: Pick<SectionNavigation, 'ac
         <ProjectDetails overviewId={route.overviewId} isProjectL={isProjectL} />
       </div>
     </section>
-    {route.detailsId && <LevelStudies />}
+    {isProjectL ? <ProjectLStudies sectionId={projectLRoute.detailsId} /> : <LevelStudies />}
   </>
 }
 
@@ -216,7 +223,7 @@ function App() {
 
   return <>
     <a className="skip-link" href={`#${firstSection}`}>본문으로 이동</a>
-    <SiteHeader contactId={contactId} activeSection={headerSection} selectSection={setActiveSection} scrolled={scrolled} />
+    <SiteHeader contactId={contactId} activeSection={headerSection} selectSection={setActiveSection} scrolled={scrolled} alignWithContent={!detailRoute} />
     <main id="main">
       {detailRoute ? <ProjectDetailPage key={pageEntry} route={detailRoute} activeSection={activeSection} /> : <>
         <section className="hero hero-split hero-full" id="home" tabIndex={-1}>

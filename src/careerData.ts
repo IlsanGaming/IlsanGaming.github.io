@@ -34,28 +34,27 @@ export const education: Education[] = [
 export const skills = [
   {
     id: 'powerpoint', tool: 'PowerPoint',
-    description: '레벨 기획 의도와 평면도 도식화',
+    description: '레벨의 설계 의도와 구간별 역할을 도식으로 정리합니다.',
   },
   {
     id: 'paint-net', tool: 'Paint.NET',
-    description: '평면도 제작과 플레이 동선·요소 배치',
+    description: '평면도에 플레이어 동선과 주요 레벨 요소를 배치합니다.',
   },
   {
     id: 'engine', tool: 'Unreal Engine 5.8',
-    description: '블록아웃, MCP 기반 플레이 구현, Landscape·PCG 환경 제작',
     details: [
-      '평면도를 바탕으로 기획 의도에 맞는 동선과 블록아웃을 제작합니다.',
-      '일관된 규격을 적용해 레벨을 구성하고, MCP를 연동해 기획 아이디어를 게임플레이로 구현합니다.',
-      'Landscape로 테마에 맞는 지형과 플레이 동선을 만들고, PCG로 테마에 맞는 환경을 구성합니다.',
+      '평면도를 바탕으로 동선을 블록아웃하고, 일관된 규격으로 공간을 구성합니다.',
+      'MCP를 연동해 기획한 플레이 흐름을 구현합니다.',
+      'Landscape로 지형을 만들고, PCG로 테마에 맞는 환경 요소를 배치합니다.',
     ],
   },
   {
     id: 'clipchamp', tool: 'Clipchamp',
-    description: '레벨 플레이 영상 편집·팀 공유',
+    description: '레벨 플레이 영상을 편집해 팀에 공유합니다.',
   },
   {
     id: 'collaboration', tool: '협업',
-    description: 'Discord·Microsoft Teams로 소통, Notion에 기획·피드백 정리',
+    description: 'Discord와 Microsoft Teams로 소통하고, Notion에 기획 내용과 피드백을 정리합니다.',
   },
 ]
 // 수상 내역이 확인되면 추가합니다. 빈 Awards 카드는 표시하지 않습니다.
@@ -63,7 +62,7 @@ export const awards: { id: string; title: string; description?: string; visibili
 export const operationDeltaExperience = {
   id: 'zombie-survival', title: 'Operation:Delta', category: '개인 프로젝트',
   teamSize: projectInfo.teamSize, roleLabel: '제작 형태', role: ['레벨 기획', '블록아웃', '시네마틱 연출(1인 개발)'],
-  engine: 'Unreal Engine 5', features: '플레이어 행동이 다음 사건과 우회 동선으로 이어지는 설계',
+  engine: 'Unreal Engine 5', features: '플레이어 행동에 따라 사건이 이어지고 탈출 동선이 바뀌는 3인칭 레벨',
   description: 'Operation 후속 개인 프로젝트 · 3인칭 도심 탈출 레벨',
   covers: [projectInfo.cover],
   contributions: projectInfo.contributions.map(item => item.description),
@@ -74,7 +73,7 @@ export const projectLExperience = {
   id: projectL.entryId, title: projectL.title, category: '레벨 디자인', covers: [projectL.cover],
   teamSize: 1, roleLabel: '제작 형태', role: ['레벨 기획', '블록아웃', '시네마틱 연출(1인 개발)'],
   description: projectL.description, engine: 'Unreal Engine 5',
-  features: '세 병사의 시점을 오가며 성벽 점령부터 본성 진입까지 진행',
+  features: '세 병사의 시점을 오가며 성벽을 점령하고 본성에 진입하는 3인칭 공성전',
   contributions: [], result: null, visibility: true,
 } satisfies CareerEntry
 
@@ -84,7 +83,7 @@ export const experiences: CareerEntry[] = [
   {
     id: 'operation', title: 'operation', category: '캡스톤디자인', teamSize: 4,
     role: ['팀장, 기획(전반)'], description: '1인칭 멀티플레이 좀비 슈터',
-    engine: 'Unreal Engine 5', features: '4인 팀 졸업 캡스톤 · 봉쇄 구역 협동 임무',
+    engine: 'Unreal Engine 5', features: '봉쇄 구역에서 협동 임무를 수행하는 1인칭 좀비 슈터',
     covers: [{ src: '/images/operation-steam-screenshot.jpg', alt: 'operation Steam 스크린샷, 긴 복도에서 좀비와 마주치는 1인칭 플레이 장면' }],
     contributions: ['레벨 디자인(블록아웃), 블루프린트 구현', '메타휴먼 제작, 배경 디자인', '시나리오, UI'],
     collaborators: ['팀원 2명: 시네마틱 제작', '팀원 1명: 멀티플레이 환경 구현'],
@@ -92,8 +91,8 @@ export const experiences: CareerEntry[] = [
     result: null, externalUrl: 'https://store.steampowered.com/app/4868590/operation/', visibility: true,
   },
   {
-    id: 'lastguardians', title: 'LastGuardians', category: '게임소프트웨어개발 Ⅰ', teamSize: null, role: ['게임 기획'],
-    engine: 'Unity', features: 'Google Play 정식 출시 · 현재 서비스 종료',
+    id: 'lastguardians', title: 'LastGuardians', category: '게임소프트웨어개발 Ⅰ', teamSize: null, role: ['팀장, 기획(전반)'],
+    engine: 'Unity', features: 'Google Play에 출시한 모바일 종스크롤 슈팅 · 현재 서비스 종료',
     description: 'Unity 기반 모바일 종스크롤 슈팅', contributions: ['모바일 게임 제작 프로젝트'],
     covers: [
       { src: '/images/lastguardians-boss-forward.jpg', alt: 'LastGuardians 보스전의 전방 발사 탄막 패턴' },

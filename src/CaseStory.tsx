@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import './LobbyStory.css'
 
 export type StorySlide = {
-  stage: string; title: string; accent: string; sentences: ReactNode[]
+  stage: string; title: ReactNode; sentences: ReactNode[]
   numeric?: boolean; guidance?: string; adjustment?: string
 }
 export default function CaseStory({ slides, title, showStepLabel = true }: { slides: StorySlide[]; title: string; showStepLabel?: boolean }) {
@@ -29,7 +29,6 @@ export default function CaseStory({ slides, title, showStepLabel = true }: { sli
         <div className="lobby-story-top">
           {showStepLabel && <p className="lobby-story-stage">{number} — {slide.stage}</p>}
           <h4 className={slide.numeric ? 'lobby-story-headline is-numeric' : 'lobby-story-headline'}>{slide.title}</h4>
-          <p className="lobby-story-accent">{slide.accent}</p>
         </div>
         <div className="lobby-story-bottom">
           {slide.sentences.map((sentence, i) => <p key={i}>{sentence}</p>)}
