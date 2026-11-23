@@ -1,15 +1,18 @@
 import { operationDeltaExperience, projectLExperience } from './careerData'
+import { projectInfo } from './projectData'
 import './ProjectDetails.css'
 
 const deltaDetails = [
   ['담당 작업 (1인 개발)', '본인 - 레벨 설계, 블록아웃, 시네마틱 연출\nAI - 프롭 및 블루프린트 구현'],
   ['사용 엔진', operationDeltaExperience.engine],
+  ['제작 기간', `${projectInfo.period.start.replaceAll('-', '.')} – ${projectInfo.period.end.replaceAll('-', '.')} (${projectInfo.period.weeks}주)`],
   ['설계 범위', '병원 로비부터 연구소 옥상까지\n공간 배치 · 탈출 동선 · 이벤트 순서'],
 ]
 
 const projectLDetails = [
   ['담당 작업 (1인 개발)', '레벨 기획 · 블록아웃 · 시네마틱 연출'],
   ['사용 엔진', projectLExperience.engine],
+  ['제작 기간', '2026.10.24 – 2026.11.21 (4주)'],
   ['AI 활용 예시', '공성탑이 성벽에 닿기 전부터 긴장감을 주고 싶었습니다. 투석기 포격과 화살비를 기획하고 구현은 AI에 맡겼습니다.'],
 ]
 

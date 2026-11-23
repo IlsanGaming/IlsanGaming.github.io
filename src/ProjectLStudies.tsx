@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import CaseStory from './CaseStory'
 import LevelClip from './LevelClip'
 import LevelRouteMap from './LevelRouteMap'
+import { assetUrl } from './assetUrl'
 import './LevelStudies.css'
 
 type Study = {
@@ -10,6 +11,7 @@ type Study = {
   headline: ReactNode
   description: string
   video: { src: string; poster: string }
+  diagram?: { src: string; alt: string; caption: string }
 }
 
 const studies: Study[] = [
@@ -36,6 +38,11 @@ const studies: Study[] = [
   },
   {
     section: '성문 위 교전 · 충차 엄호',
+    diagram: {
+      src: '/images/project-l-archer-placement.webp',
+      alt: '성문 옆 두 궁수조의 기존 위치와 성벽 양 끝으로 옮긴 위치를 화살표로 표시한 도식',
+      caption: '궁수 배치 전후',
+    },
     routeLocation: '3번 성문 위 엄호 → 5번 성문 돌파',
     headline: '성벽 한쪽을 확보했는데 충차는 왜 아직 멈춰 있을까요?',
     description: '처음에는 궁수들이 성문 옆에 모여 있었습니다. 이들을 성벽 양 끝으로 나눠 배치했습니다.\nB가 가까운 쪽을 정리하고 나면 건너편에서 날아오는 화살이 눈에 들어옵니다.\n그쪽까지 건너가야 아래에서 기다리던 C가 충차를 밀 수 있습니다.',
@@ -82,7 +89,7 @@ export default function ProjectLStudies({ sectionId }: { sectionId: string }) {
             height={989}
             stops={routeStops}
           />
-          {studies.map(({ routeLocation, section, headline, description, video }, index) => (
+          {studies.map(({ routeLocation, section, headline, description, video, diagram }, index) => (
             <article className="case-card" key={section}>
               <header className="level-case-header">
                 <h3><span>{String(index + 1).padStart(2, '0')}</span> {section}</h3>
@@ -92,6 +99,12 @@ export default function ProjectLStudies({ sectionId }: { sectionId: string }) {
                 <LevelClip {...video} title={section} scrollAutoplay />
                 <CaseStory slides={[{ stage: section, title: headline, sentences: [description] }]} title={section} showStepLabel={false} />
               </div>
+              {diagram && (
+                <figure className="archer-placement">
+                  <figcaption>{diagram.caption}</figcaption>
+                  <img src={assetUrl(diagram.src)} width="1440" height="322" alt={diagram.alt} loading="lazy" />
+                </figure>
+              )}
             </article>
           ))}
         </div>

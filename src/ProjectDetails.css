@@ -40,7 +40,8 @@
   border-radius: 20px;
 }
 
-.project-detail-rows[data-columns="2"] {
+.project-detail-rows[data-columns="2"],
+.project-detail-rows[data-columns="4"] {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
@@ -67,6 +68,9 @@
 #play .project-detail-rows dd { white-space: pre-line; }
 
 @media (max-width: 760px) {
+  .project-detail-rows[data-columns="4"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .project-detail-rows {
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: 16px;

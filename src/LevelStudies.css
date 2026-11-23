@@ -127,6 +127,10 @@
 
 .lobby-story-headline .headline-phrase { display: inline-block; max-width: 100%; }
 
+.archer-placement { margin: 24px 0 0; }
+.archer-placement figcaption { margin-bottom: 8px; font-weight: 650; }
+.archer-placement img { display: block; width: 100%; height: auto; border-radius: 12px; }
+
 @media (min-width: 900px) and (max-width: 1099px) {
   :is(#levels, #project-l-details) .level-case-content { grid-template-columns: minmax(0, 1fr); }
 }
