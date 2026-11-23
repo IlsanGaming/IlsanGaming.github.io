@@ -118,6 +118,23 @@
 }
 
 .level-case-content > .project-media { border-radius: 16px; }
+:is(#levels, #project-l-details) .lobby-story-bottom p {
+  white-space: pre-line;
+  text-wrap: balance;
+}
+
+:is(#levels, #project-l-details) .lobby-story-headline { text-wrap: balance; }
+
+.lobby-story-headline .headline-phrase { display: inline-block; max-width: 100%; }
+
+@media (min-width: 900px) and (max-width: 1099px) {
+  :is(#levels, #project-l-details) .level-case-content { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (min-width: 1100px) {
+  :is(#levels, #project-l-details) .level-case-content { grid-template-columns: minmax(0, 43fr) minmax(0, 57fr); }
+}
+
 .case-records { min-width: 0; border-radius: 16px; }
 .case-records:focus-visible { outline: 2px solid #3182f6; outline-offset: 4px; }
 

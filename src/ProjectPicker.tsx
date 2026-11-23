@@ -5,13 +5,13 @@ import './ProjectPicker.css'
 const projects = [
   {
     title: projectL.title,
-    description: '세 병사의 시점을 오가며 성벽을 넘고 성문을 여는 3인칭 공성전.',
+    description: '세 병사의 시점을 잇는 공성전.\n성벽 양 끝의 궁수를 제압해야 다음 병사가 충차를 밉니다.',
     cover: assetUrl(projectL.cover.src),
     href: `#${projectL.entryId}`,
   },
   {
     title: projectInfo.title,
-    description: '좀비로 출구가 막힌 병원에서 단서를 따라 탈출로를 찾는 3인칭 생존 호러.',
+    description: '병원을 탈출하는 생존 호러.\n셔터를 열려다 좀비를 불러 다른 탈출로를 찾아야 합니다.',
     cover: assetUrl(projectInfo.cover.src),
     href: '#play',
   },

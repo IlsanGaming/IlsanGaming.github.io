@@ -119,7 +119,7 @@ function ProjectDetailPage({ route, activeSection }: Pick<SectionNavigation, 'ac
     <div className="project-detail-hero" style={{ backgroundImage: `url("${assetUrl(poster)}")` }}>
       <LevelClip src={src} poster={poster} title={project.title} background />
       <div className="project-detail-hero-title">
-        <p>{isProjectL ? '세 병사의 시점을 이어 성벽을 넘고 성문을 여는 3인칭 공성전' : '3인칭 좀비 서바이벌 · 도심 탈출'}</p>
+        <p>{isProjectL ? '세 병사의 시점을 이어 성벽을 넘고 성문을 여는 3인칭 공성전' : '플레이어의 행동이 다음 사건을 부르고 탈출 경로를 바꾸는 3인칭 생존 호러'}</p>
         <h1>{project.title}</h1>
         <div className="project-detail-hero-actions">
           {isProjectL
@@ -232,7 +232,7 @@ function App() {
           <div className="container hero-full-content"><div className="hero-copy">
             <div className="eyebrow">LEVEL DESIGN PORTFOLIO</div>
             <h1>레벨디자이너 조강현</h1>
-            <p className="hero-description">플레이로 완성되는 공간을 설계하는 레벨디자이너 조강현입니다.</p>
+            <p className="hero-description">플레이어가 주변을 살피며 다음 길을 찾도록 레벨을 설계합니다.</p>
           </div></div>
           <a className="button secondary hero-project-link" href="#projects">VIEW PROJECTS <span aria-hidden="true">↓</span></a>
         </section>

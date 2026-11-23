@@ -1,11 +1,13 @@
+import type { ReactNode } from 'react'
 import CaseStory from './CaseStory'
 import LevelClip from './LevelClip'
 import LevelRouteMap from './LevelRouteMap'
 import './LevelStudies.css'
 
 type Study = {
+  routeLocation: string
   section: string
-  headline: string
+  headline: ReactNode
   description: string
   video: { src: string; poster: string }
 }
@@ -13,38 +15,44 @@ type Study = {
 const studies: Study[] = [
   {
     section: '공성탑 · 성벽 상륙',
+    routeLocation: '1번 공성탑 상륙 · 6번 본성 진입',
     headline: '공성탑에서 본 본성의 첨탑이 안뜰에서 다시 보입니다.',
-    description: '공성탑에서는 성벽 너머로 본성의 첨탑이 처음 보입니다. 성벽을 따라 이동하는 동안에도 첨탑을 보며 방향을 확인할 수 있게 했습니다. 안뜰에 들어서면 붉은 카펫이 첨탑이 보이는 쪽으로 이어집니다.',
+    description: '공성탑 위에서는 성벽 너머로 본성의 첨탑이 보입니다.\n성벽에 오른 뒤에도 방향을 바꿀 때마다 첨탑을 확인할 수 있게 배치했습니다.\n성문을 지나면 붉은 카펫 끝에 같은 첨탑이 보입니다.',
     video: { src: '/videos/project-l-landmark.mp4', poster: '/videos/project-l-landmark.webp' },
   },
   {
     section: '성벽 붕괴 · 두 번째 포대',
-    headline: '화살이 정면 접근을 압박하고, 횃불이 측면 사다리로 안내합니다.',
-    description: '성벽이 무너져 위쪽 보행로가 끊기면, 플레이어는 왼쪽 계단으로 내려갑니다. 포대 정면 계단에는 위에서 화살이 날아와 곧장 오르기 어렵습니다. 아래 통로에서 횃불을 따라가면 측면 사다리가 보이고, 그 사다리로 포대에 올라갑니다.',
+    routeLocation: '1번 공성탑 상륙과 2번 첫 문 사이',
+    headline: '정면 계단에는 궁수를 두고 측면 사다리까지는 횃불을 놓았습니다.',
+    description: '성벽이 무너져 상단 보행로가 끊기면 왼쪽 계단으로 내려갑니다.\n아래에서 포대로 곧장 오르려면 궁수의 사격을 받으며 정면 계단을 올라야 합니다.\n낮은 통로에서는 횃불을 따라가다 포대 옆으로 오르는 사다리를 발견합니다.',
     video: { src: '/videos/project-l-ladder.mp4', poster: '/videos/project-l-ladder.webp' },
   },
   {
     section: '첫 문 · 시점 전환',
+    routeLocation: '2번 첫 문',
     headline: 'A가 열어 달라고 외친 문을 B가 반대편에서 엽니다.',
-    description: '잠긴 문에 막힌 A는 아래에 있는 B분대에 문을 열어 달라고 요청합니다. 조작이 B로 넘어가면, 플레이어는 건너편으로 이동해 문 안쪽의 개폐 장치를 돌립니다.',
+    description: '잠긴 문 앞에서 A의 어깨 너머로 한 단 아래의 B분대가 보입니다.\nA가 문을 열어 달라고 외치면 조작이 B로 넘어갑니다.\nB는 건너편 계단을 올라 문루 안쪽의 개폐 장치를 돌립니다.',
     video: { src: '/videos/project-l-switch.mp4', poster: '/videos/project-l-switch.webp' },
   },
   {
     section: '성문 위 교전 · 충차 엄호',
-    headline: '한쪽 화살병을 쓰러뜨려도, 충차는 움직일 수 없습니다.',
-    description: '성문 근처에 모여 있던 궁수들을 성벽 양 끝의 돌출부로 나눠 배치했습니다. B가 가까운 쪽 궁수를 제압해도 건너편에서 충차를 향해 계속 화살이 날아옵니다. B가 성벽을 건너 남은 궁수까지 제압하면, C가 충차를 밀어 성문을 돌파합니다.',
+    routeLocation: '3번 성문 위 엄호 → 5번 성문 돌파',
+    headline: '성벽 한쪽을 확보했는데 충차는 왜 아직 멈춰 있을까요?',
+    description: '처음에는 궁수들이 성문 옆에 모여 있었습니다. 이들을 성벽 양 끝으로 나눠 배치했습니다.\nB가 가까운 쪽을 정리하고 나면 건너편에서 날아오는 화살이 눈에 들어옵니다.\n그쪽까지 건너가야 아래에서 기다리던 C가 충차를 밀 수 있습니다.',
     video: { src: '/videos/project-l-ram-guard.mp4', poster: '/images/project-l-ram-guard.webp' },
   },
   {
     section: '안뜰 · 본성 진입',
-    headline: '안뜰 전투가 끝나면, 붉은 카펫이 본성으로 이끕니다.',
-    description: '성문을 통과하면 안뜰에서 정면의 적 무리와 맞붙습니다. 중앙 조형물 앞에서 붉은 카펫이 두 갈래로 나뉩니다. 어느 쪽을 따라가도 본성으로 오르는 계단에 닿습니다.',
+    routeLocation: '5번 성문 돌파 → 6번 본성 진입',
+    headline: <><span className="headline-phrase">붉은 카펫은 두 갈래로 나뉘지만</span>{' '}<span className="headline-phrase">어느 쪽을 따라가도 <span className="headline-phrase">본성 계단에 닿습니다.</span></span></>,
+    description: '성문 안쪽의 좁은 통로를 벗어나면 안뜰 너머로 본성의 첨탑이 보입니다.\n안뜰 중앙에는 조형물을 두고 붉은 카펫을 그 양옆으로 꺾었습니다.\n어느 쪽을 택해도 카펫이 계단 입구까지 이어져 본성으로 오를 길을 찾을 수 있습니다.',
     video: { src: '/videos/project-l-battle.mp4', poster: '/videos/project-l-battle.webp' },
   },
   {
     section: '팔각 로비 · 두 개의 열쇠',
-    headline: '양쪽 방을 돌아, 처음 마주친 문을 엽니다.',
-    description: '로비에 들어서면 정면 문에 열쇠를 꽂을 자리 두 개가 보입니다. 왼쪽 방에서는 정예병을 쓰러뜨리고, 오른쪽 방에서는 퍼즐을 풀어 열쇠를 얻습니다. 두 열쇠를 모으면 로비로 돌아와 정면 문을 엽니다. 안뜰에서의 대규모 전투와 근위대장 결투 사이에 두 방을 탐색하는 구간을 넣어 한 번 숨을 고르게 했습니다.',
+    routeLocation: '7번 팔각 로비',
+    headline: '양쪽 방을 돌아 처음 마주친 문을 엽니다.',
+    description: '잠긴 정면 문의 열쇠 자리 두 개를 먼저 보여줘 양옆 방을 살펴볼 이유를 만들었습니다.\n힘의 방에서는 정예병을 쓰러뜨리고 지혜의 방에서는 거울을 돌려 빛을 태양 문장에 연결합니다.\n어느 방에서든 열쇠를 얻고 나오면 처음 문을 봤던 로비로 돌아옵니다.\n안뜰의 대규모 전투 뒤에는 두 방을 탐색하며 한숨 돌리고 근위대장과 결투를 치르도록 했습니다.',
     video: { src: '/videos/project-l-dungeon.mp4', poster: '/videos/project-l-dungeon.webp' },
   },
 ]
@@ -74,10 +82,11 @@ export default function ProjectLStudies({ sectionId }: { sectionId: string }) {
             height={989}
             stops={routeStops}
           />
-          {studies.map(({ section, headline, description, video }, index) => (
+          {studies.map(({ routeLocation, section, headline, description, video }, index) => (
             <article className="case-card" key={section}>
               <header className="level-case-header">
                 <h3><span>{String(index + 1).padStart(2, '0')}</span> {section}</h3>
+                <p>동선도 · {routeLocation}</p>
               </header>
               <div className="level-case-content">
                 <LevelClip {...video} title={section} scrollAutoplay />

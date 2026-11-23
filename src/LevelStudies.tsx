@@ -18,7 +18,7 @@ const caseStories = {
   'hq-story': HQStory,
 }
 
-const routeStops = ['병실·병원 로비', '직원 통로', '최상층', '병원 앞·출구', '격리구역', 'HQ(지휘소)', '연구소 1층·옥상']
+const routeStops = ['병실·병원 로비', '직원 통로', '최상층', '병원 앞·병원 출구', '격리구역', 'HQ(지휘소)', '연구소 1층·옥상']
 const routeMapSrc = '/images/operation-delta-level-map.webp'
 
 function Placeholder({ text }: { text: string }) {
@@ -35,6 +35,7 @@ function renderCase(item: LevelStudy) {
   return <article className="case-card" key={item.label}>
     <header className="level-case-header">
       <h3><span>{item.label}</span> {item.title}</h3>
+      <p>동선도 · {item.routeLocation}</p>
     </header>
     <div className="level-case-content">
       {item.video

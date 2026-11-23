@@ -45,8 +45,12 @@
 }
 .career-summary .career-work-meta{margin-bottom:6px}
 .career-summary h4{margin-bottom:4px}
+.career-engine-logo { display: inline-block; margin-inline-start: 8px; vertical-align: middle; }
+.sidebar-logo-heading { display: flex; align-items: center; gap: 8px; }
+.sidebar-logo-heading img { object-fit: contain; }
 .career-summary-role{margin-bottom:6px;color:#4e5968;font-size:13px;font-weight:650;line-height:1.5;overflow-wrap:anywhere}
 .career-summary .career-work-description{line-height:1.7}
+.career-role-phrase { display: inline-block; max-width: 100%; text-wrap: balance; }
 
 .about-profile-name h2{font-size:clamp(36px,4.4vw,48px)}
 .about-profile-name>span{font-size:18px}

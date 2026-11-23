@@ -25,6 +25,10 @@
   overflow-wrap: anywhere;
 }
 
+@media (min-width: 761px) {
+  :is(#play, #project-l) .play-project-overview p { max-width: 100%; }
+}
+
 .project-detail-rows {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -59,6 +63,8 @@
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
+
+#play .project-detail-rows dd { white-space: pre-line; }
 
 @media (max-width: 760px) {
   .project-detail-rows {

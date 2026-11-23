@@ -70,6 +70,7 @@
 }
 
 .project-card p {
+  white-space: pre-line;
   margin: 6px 0 16px;
   color: #4e5968;
   font-size: 14px;
