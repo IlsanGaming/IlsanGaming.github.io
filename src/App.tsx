@@ -9,8 +9,6 @@ import { projectInfo, projectL } from './projectData'
 import LevelStudies from './LevelStudies'
 import ProjectLStudies from './ProjectLStudies'
 import ProjectPicker from './ProjectPicker'
-import HeroIntro from './HeroIntro'
-import { shouldPlayHeroIntro } from './heroIntroState'
 
 const homeNav = [['home', 'Home'], ['projects', 'Project'], ['about', 'About me']]
 type DetailRoute = { entryId: string; overviewId: string; contactId: string; detailsId?: string }
@@ -175,7 +173,6 @@ function App() {
     anchor === contactId || anchor === detailRoute?.detailsId || homeNav.some(([id]) => id === anchor) ? anchor : firstSection,
   )
   const headerSection = detailRoute && activeSection !== contactId ? 'projects' : activeSection
-  const [heroIntro, setHeroIntro] = useState<'intro' | 'reveal' | 'static'>(() => shouldPlayHeroIntro(getPageFragment()) ? 'intro' : 'static')
 
   useEffect(() => {
     const updateAnchor = () => setAnchor(getPageFragment())
@@ -229,17 +226,13 @@ function App() {
     <SiteHeader contactId={contactId} activeSection={headerSection} selectSection={setActiveSection} scrolled={scrolled} alignWithContent={!detailRoute} />
     <main id="main">
       {detailRoute ? <ProjectDetailPage key={pageEntry} route={detailRoute} activeSection={activeSection} /> : <>
-        <section className="hero hero-split hero-full" id="home" tabIndex={-1} data-intro={heroIntro}>
+        <section className="hero hero-split hero-full" id="home" tabIndex={-1}>
           <LevelClip src="/videos/hero-main.mp4" poster="/videos/hero-main.webp" title="" background />
           <div className="hero-shade" aria-hidden="true" />
-          {heroIntro !== 'static' && <HeroIntro
-            onReveal={() => setHeroIntro('reveal')}
-            onDone={() => setHeroIntro('static')}
-            onSkip={() => setHeroIntro('static')} />}
           <div className="container hero-full-content"><div className="hero-copy">
             <div className="eyebrow">LEVEL DESIGN PORTFOLIO</div>
-            <h1>레벨디자이너 조강현</h1>
-            <p className="hero-description">플레이로 완성되는 공간을 설계하는 레벨디자이너 조강현입니다.</p>
+            <h1>레벨 디자이너 <span className="hero-name-accent">조강현</span></h1>
+            <p className="hero-description">플레이로 완성되는 공간을 설계하는 레벨디자이너 <span className="hero-name-accent">조강현</span>입니다.</p>
           </div></div>
           <a className="button secondary hero-project-link" href="#projects">VIEW PROJECTS <span aria-hidden="true">↓</span></a>
         </section>
