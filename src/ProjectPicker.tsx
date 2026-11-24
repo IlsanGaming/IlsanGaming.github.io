@@ -5,13 +5,13 @@ import './ProjectPicker.css'
 const projects = [
   {
     title: projectL.title,
-    description: '세 병사의 시점을 잇는 공성전.\n성벽 양 끝의 궁수를 제압해야 다음 병사가 충차를 밉니다.',
+    description: '공성탑에서 본성까지, 세 병사를 번갈아 조작하는 3인칭 공성전입니다.\n성벽에 오르는 선봉부터 성문을 뚫는 충차까지, 한 병사가 해낸 일이 다음 병사의 길을 엽니다.',
     cover: assetUrl(projectL.cover.src),
     href: `#${projectL.entryId}`,
   },
   {
     title: projectInfo.title,
-    description: '병원을 탈출하는 생존 호러.\n셔터를 열려다 좀비를 불러 다른 탈출로를 찾아야 합니다.',
+    description: '서대문 병원에서 연구소 옥상까지 탈출로를 찾는 3인칭 좀비 생존 호러\n플레이어가 일으킨 사건이 위험을 부르고, 탈출 경로를 정하는 계기가 됩니다.',
     cover: assetUrl(projectInfo.cover.src),
     href: '#play',
   },
